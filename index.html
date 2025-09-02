@@ -1,97 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>Treino Interativo de Recupera&ccedil;&atilde;o e Condicionamento</title>
-		<style type="text/css">
-body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #004d40, #00796b);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    .card {
-      background: rgba(0,0,0,0.7);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    button {
-      background: #ffca28;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-    button:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-    .progress-container {
-      width: 100%;
-      background: #333;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    .progress-bar {
-      height: 20px;
-      background: #ffca28;
-      border-radius: 8px;
-      width: 0%;
-      transition: width 0.3s ease;
-    }		</style>
-	</head>
-	<body>
-		<h1>
-			Treino Interativo</h1>
-		<div class="progress-container">
-			<div class="progress-bar" id="progressBar">
-				&nbsp;</div>
-		</div>
-		<div class="card" id="cardDia">
-			<h2 id="tituloDia">
-				Dia 1</h2>
-			<p id="atividade">
-				Flex&atilde;o de bra&ccedil;o com apoio de joelhos &ndash; 3x12</p>
-			<a href="https://www.youtube.com/watch?v=IODxDxX7oi4" id="videoLink" target="_blank">▶ V&iacute;deo de refer&ecirc;ncia</a><br />
-			<button id="concluirBtn">Concluir treino</button></div>
-		<script>
-    const atividades = [
-      {titulo: "Dia 1", tarefa: "Flexão de braço com apoio de joelhos – 3x12", video: "https://www.youtube.com/watch?v=IODxDxX7oi4"},
-      {titulo: "Dia 2", tarefa: "Elevação lateral com halteres (2kg) – 3x15", video: "https://www.youtube.com/watch?v=3VcKaXpzqRo"},
-      {titulo: "Dia 3", tarefa: "Prancha abdominal – 3x30s", video: "https://www.youtube.com/watch?v=pSHjTRCQxIw"},
-      {titulo: "Dia 4", tarefa: "Mobilidade de ombro com bastão (substituir com cabo de vassoura) – 3x10", video: "https://www.youtube.com/watch?v=4RzW4Y9xC2I"},
-      {titulo: "Dia 5", tarefa: "Agachamento livre – 3x20", video: "https://www.youtube.com/watch?v=aclHkVaku9U"},
-      {titulo: "Dia 6", tarefa: "Corrida estacionária – 5x1min", video: "https://www.youtube.com/watch?v=6us7LMiR6kE"},
-      {titulo: "Dia 7", tarefa: "Descanso ativo – caminhada leve e alongamentos gerais", video: "https://www.youtube.com/watch?v=2L2lnxIcNmo"},
-    ];
-
-    let diaAtual = localStorage.getItem("diaAtual") ? parseInt(localStorage.getItem("diaAtual")) : 0;
-
-    function atualizarTela() {
-      if (diaAtual >= atividades.length) {
-        document.getElementById("cardDia").innerHTML = "<h2>Parabéns! 🎉</h2><p>Você concluiu esta semana de treino!</p>";
-        return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Treino Interativo de Recuperação e Condicionamento</title>
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #004d40, #00796b);
+        color: #fff;
+        text-align: center;
+        padding: 20px;
       }
-      const atividade = atividades[diaAtual];
-      document.getElementById("tituloDia").innerText = atividade.titulo;
-      document.getElementById("atividade").innerText = atividade.tarefa;
-      document.getElementById("videoLink").href = atividade.video;
-      document.getElementById("progressBar").style.width = ((diaAtual) / atividades.length * 100) + "%";
-    }
+      .card {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 400px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      }
+      button {
+        background: #ffca28;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+      button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+      .progress-container {
+        width: 100%;
+        background: #333;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .progress-bar {
+        height: 20px;
+        background: #ffca28;
+        border-radius: 8px;
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Treino Interativo</h1>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="card" id="cardDia">
+      <h2 id="tituloDia">Dia 1</h2>
+      <p id="atividade">Flexão de braço com apoio de joelhos – 3x12</p>
+      <a href="https://www.youtube.com/watch?v=IODxDxX7oi4" id="videoLink" target="_blank">▶ Vídeo de referência</a><br />
+      <button id="concluirBtn">Concluir treino</button>
+      <button id="resetBtn" style="background:#e53935; margin-left:10px;">Resetar treino</button>
+    </div>
 
-    document.getElementById("concluirBtn").addEventListener("click", () => {
-      diaAtual++;
-      localStorage.setItem("diaAtual", diaAtual);
+    <script>
+      const atividades = [
+        {titulo: "Dia 1", tarefa: "Flexão de braço com apoio de joelhos – 3x12", video: "https://www.youtube.com/watch?v=IODxDxX7oi4"},
+        {titulo: "Dia 2", tarefa: "Elevação lateral com halteres (2kg) – 3x15", video: "https://www.youtube.com/watch?v=3VcKaXpzqRo"},
+        {titulo: "Dia 3", tarefa: "Prancha abdominal – 3x30s", video: "https://www.youtube.com/watch?v=pSHjTRCQxIw"},
+        {titulo: "Dia 4", tarefa: "Mobilidade de ombro com bastão (substituir com cabo de vassoura) – 3x10", video: "https://www.youtube.com/watch?v=4RzW4Y9xC2I"},
+        {titulo: "Dia 5", tarefa: "Agachamento livre – 3x20", video: "https://www.youtube.com/watch?v=aclHkVaku9U"},
+        {titulo: "Dia 6", tarefa: "Corrida estacionária – 5x1min", video: "https://www.youtube.com/watch?v=6us7LMiR6kE"},
+        {titulo: "Dia 7", tarefa: "Descanso ativo – caminhada leve e alongamentos gerais", video: "https://www.youtube.com/watch?v=2L2lnxIcNmo"},
+      ];
+
+      let diaAtual = localStorage.getItem("diaAtual") ? parseInt(localStorage.getItem("diaAtual")) : 0;
+
+      function atualizarTela() {
+        if (diaAtual >= atividades.length) {
+          document.getElementById("cardDia").innerHTML =
+            "<h2>Parabéns! 🎉</h2><p>Você concluiu esta semana de treino!</p><button onclick='resetarTreino()' style='background:#e53935;'>Resetar treino</button>";
+          document.getElementById("progressBar").style.width = "100%";
+          return;
+        }
+        const atividade = atividades[diaAtual];
+        document.getElementById("tituloDia").innerText = atividade.titulo;
+        document.getElementById("atividade").innerText = atividade.tarefa;
+        document.getElementById("videoLink").href = atividade.video;
+        document.getElementById("progressBar").style.width = (diaAtual / atividades.length * 100) + "%";
+      }
+
+      document.getElementById("concluirBtn").addEventListener("click", () => {
+        diaAtual++;
+        localStorage.setItem("diaAtual", diaAtual);
+        atualizarTela();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", resetarTreino);
+
+      function resetarTreino() {
+        diaAtual = 0;
+        localStorage.setItem("diaAtual", diaAtual);
+        atualizarTela();
+      }
+
       atualizarTela();
-    });
-
-    atualizarTela();
-  </script></body>
+    </script>
+  </body>
 </html>
